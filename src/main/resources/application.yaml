@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: medicare
+  datasource:
+    url: jdbc:postgresql://localhost:5432/medicare
+    driver-class-name: org.postgresql.Driver
+    username: app
+    password: telus
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  mail:
+    host: smtp.mail.yahoo.com
+    port: 587
+    username: lbrobertca@yahoo.com
+    password: 8Mondeo123!
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
