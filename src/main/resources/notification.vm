@@ -1,0 +1,53 @@
+<style>
+	table {
+	  border-collapse: collapse;
+	}
+
+	table, th, td {
+	  border: 1px solid black;
+	  padding: 0 5px;
+	}
+	
+	th {
+		font-weight: bold;
+	}
+	
+	.error {
+		color: red;
+	}
+	
+	.success {
+		color: green;
+	}
+	
+	.ignore {
+		color: orange;
+	}
+	
+	.plain {
+		background-color: #f1f1f1;
+	}
+</style>
+
+<p>
+	<h3>
+	Medications Requiring a New Prescription
+	</h3>
+</p>
+
+<table>
+	<tr>
+		<th nowrap>Patient</th>
+		<th nowrap>Medication</th>
+		<th nowrap>Prescription Date</th>
+		<th nowrap>Last Refill Date</th>
+	</tr>
+#foreach($p in $prescriptions)
+    <tr class="$report.style">
+        <td nowrap>$p.person.firstName</td>
+        <td nowrap>$p.medication</td>
+		<td nowrap>$p.prescriptionDate</td>
+        <td nowrap>$p.lastRefillDate</td>
+    </tr>
+#end
+<table>

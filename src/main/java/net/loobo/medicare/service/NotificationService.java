@@ -4,9 +4,15 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.loobo.medicare.db.model.Prescription;
 import net.loobo.medicare.db.repository.PrescriptionRepository;
+import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.runtime.RuntimeConstants;
+import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.io.StringWriter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -27,11 +33,20 @@ public class NotificationService {
             return;
         }
 
-        emailService.sendEmail("xulubo@gmail.com", "time for new prescription",
+        VelocityEngine ve = new VelocityEngine();
+        ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
+        ve.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
+        ve.init();
+        var template = ve.getTemplate( "notification.vm" );
+        VelocityContext context = new VelocityContext();
+        context.put("prescriptions", zeroRefillPrescriptionList);
+        var writer = new StringWriter();
+        template.merge(context, writer);
 
-                zeroRefillPrescriptionList.stream()
-                        .map(p->p.getMedication())
-                        .collect(Collectors.joining(","))
+        emailService.sendEmail(
+                "xulubo@gmail.com",
+                "time for new prescription",
+                writer.toString()
                 );
 
         zeroRefillPrescriptionList.forEach(p->p.setNotificationSentTime(LocalDateTime.now()));

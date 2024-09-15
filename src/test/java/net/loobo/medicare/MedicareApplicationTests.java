@@ -12,7 +12,7 @@ class MedicareApplicationTests {
 	private EmailService emailService;
 
 	@Test
-	void contextLoads() {
+	void sendEmailTest() {
 		emailService.sendEmail("xulubo@gmail.com", "test", "test");
 	}
 

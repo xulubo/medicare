@@ -1,0 +1,1 @@
+java -jar C:\Work\Loobo\medicare\target\medicare-0.0.1.jar

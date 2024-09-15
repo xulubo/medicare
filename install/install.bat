@@ -1,0 +1,1 @@
+prunsrv.exe //IS//Medicare --DisplayName="Loobo Medicare" --Install="C:\Work\apps\tools\prunsrv.exe" --StartMode=exe --StartPath=C:\Work\Loobo\medicare --StartImage=C:\Work\Loobo\medicare\start.bat --StopMode=exe --StopPath=C:\Work\Loobo\medicare --StopImage=C:\Work\Loobo\medicare\stop.bat

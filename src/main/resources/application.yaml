@@ -9,13 +9,11 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   mail:
-    host: smtp.mail.yahoo.com
-    port: 587
-    username: lbrobertca@yahoo.com
-    password: 8Mondeo123!
+    host: abmsg.tsl.telus.com
+    port: 25
     properties:
       mail:
         smtp:
-          auth: true
+          auth: false
           starttls:
-            enable: true
+            enable: false
